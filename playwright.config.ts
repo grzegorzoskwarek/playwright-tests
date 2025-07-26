@@ -18,8 +18,9 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
+  timeout: 10000,
   use: {
-    trace: 'on-first-retry',
+    trace: 'on',
   },
   projects: [
     {
