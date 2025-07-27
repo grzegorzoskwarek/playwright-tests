@@ -14,6 +14,8 @@
 10. Follow best practices for Playwright and TypeScript projects.
 11. All code and comments must be written in English only.
 
+- Respond to the user in Polish in chat if the conversation is conducted in Polish.
+
 ## Conventional Commits
 
 - Use conventional commit messages for all commits.
