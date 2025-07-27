@@ -19,11 +19,7 @@ test('User login: valid credentials allow access', async ({ loginPage }) => {
   await expect(loginPage.loginHeading).toBeVisible();
 });
 
-test('Event creation: user can create a valid event', async ({ registerPage, loginPage, eventsPage }) => {
-  await registerPage.goto();
-  await registerPage.register('testuser', 'Test User', 'TestPassword1');
-  await expect(registerPage.successMessage).toBeVisible();
-
+test('Event creation: user can create a valid event', async ({ loginPage, eventsPage }) => {
   await loginPage.goto();
   await loginPage.login('testuser', 'TestPassword1');
   await expect(loginPage.loginHeading).toBeVisible();
