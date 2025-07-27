@@ -20,3 +20,5 @@
 - Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`.
 - Example: `feat: add user login functionality`
 - Keep descriptions short, clear, and relevant to the change.
+
+- When instructed to commit, always run all tests first and only commit if all tests pass. Never commit without running tests.
