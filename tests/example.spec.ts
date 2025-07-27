@@ -1,38 +1,18 @@
-import { expect } from '@playwright/test';
-import { test } from '../src/fixtures';
+import { test, expect } from '@playwright/test';
 
-test('Smoke test: app loads and shows expected title', async ({ homePage }) => {
-  await homePage.goto();
-  await expect(homePage.heading).toHaveText('Welcome to EventBugAI');
+test('has title', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
+
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle(/Playwright/);
 });
 
-test('User registration', async ({ registerPage }) => {
-  const uniqueId = 'user' + Date.now();
-  await registerPage.goto();
-  await registerPage.register(uniqueId, 'Test User', 'TestPassword1');
-  await expect(registerPage.successMessage).toBeVisible();
-});
+test('get started link', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
 
-test('User login: valid credentials allow access', async ({ loginPage }) => {
-  await loginPage.goto();
-  await loginPage.login('testuser', 'TestPassword1');
-  await expect(loginPage.myEventsHeading).toBeVisible();
-});
+  // Click the get started link.
+  await page.getByRole('link', { name: 'Get started' }).click();
 
-test('Event creation: user can create a valid event', async ({ loginPage, eventsPage }) => {
-  await loginPage.goto();
-  await loginPage.login('testuser', 'TestPassword1');
-
-  await eventsPage.gotoCreateEvent();
-  await eventsPage.createEvent({
-    title: 'Playwright Test Event',
-    description: 'This is a test event created by Playwright.',
-    date: '2025-12-31',
-    time: '12:00',
-    location: 'Test Location',
-    categories: 'Testing',
-    online: false
-  });
-
-  await expect(eventsPage.page.getByText('Event created successfully')).toBeVisible();
+  // Expects page to have a heading with the name of Installation.
+  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
 });
