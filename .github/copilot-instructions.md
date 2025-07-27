@@ -22,3 +22,4 @@
 - Keep descriptions short, clear, and relevant to the change.
 
 - When instructed to commit, always run all tests first and only commit if all tests pass. Never commit without running tests.
+- When instructed to commit, do not push changes automatically. Wait for manual push instructions.
