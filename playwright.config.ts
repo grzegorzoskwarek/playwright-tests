@@ -26,12 +26,17 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: /setup\/user\.setup\.spec\.ts$/,
+      grep: /@setup/,
       use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'public',
-      testMatch: /example\.spec\.ts$/,
+      grep: /@public/,
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'user-flows',
+      grep: /@user/,
       use: { ...devices['Desktop Chrome'] },
     },
     {
