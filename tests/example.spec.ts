@@ -3,7 +3,6 @@ import { test } from '../src/fixtures';
 
 test('Smoke test: app loads and shows expected title', async ({ homePage }) => {
   await homePage.goto();
-  await expect(homePage.heading).toBeVisible();
   await expect(homePage.heading).toHaveText('Welcome to EventBugAI');
 });
 
@@ -12,4 +11,28 @@ test('User registration', async ({ registerPage }) => {
   await registerPage.goto();
   await registerPage.register(uniqueId, 'Test User', 'TestPassword1');
   await expect(registerPage.successMessage).toBeVisible();
+});
+
+test('User login: valid credentials allow access', async ({ loginPage }) => {
+  await loginPage.goto();
+  await loginPage.login('testuser', 'TestPassword1');
+  await expect(loginPage.myEventsHeading).toBeVisible();
+});
+
+test('Event creation: user can create a valid event', async ({ loginPage, eventsPage }) => {
+  await loginPage.goto();
+  await loginPage.login('testuser', 'TestPassword1');
+
+  await eventsPage.gotoCreateEvent();
+  await eventsPage.createEvent({
+    title: 'Playwright Test Event',
+    description: 'This is a test event created by Playwright.',
+    date: '2025-12-31',
+    time: '12:00',
+    location: 'Test Location',
+    categories: 'Testing',
+    online: false
+  });
+
+  await expect(eventsPage.page.getByText('Event created successfully')).toBeVisible();
 });

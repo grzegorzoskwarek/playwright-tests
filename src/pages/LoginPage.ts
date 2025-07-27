@@ -6,6 +6,7 @@ export class LoginPage {
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
     readonly errorMessage: Locator;
+    readonly myEventsHeading: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -13,6 +14,7 @@ export class LoginPage {
         this.passwordInput = page.getByRole('textbox', { name: 'Password:' });
         this.loginButton = page.getByRole('button', { name: 'Login' });
         this.errorMessage = page.getByText('Invalid credentials');
+        this.myEventsHeading = page.getByRole('heading', { name: 'My Events' });
     }
 
     async goto() {
@@ -23,5 +25,9 @@ export class LoginPage {
         await this.identifierInput.fill(identifier);
         await this.passwordInput.fill(password);
         await this.loginButton.click();
+    }
+
+    async isLoggedIn() {
+        return await this.myEventsHeading.isVisible();
     }
 }
