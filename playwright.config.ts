@@ -20,6 +20,7 @@ export default defineConfig({
   reporter: 'html',
   timeout: 10000,
   use: {
+    baseURL: 'https://eventbugai.onrender.com/',
     trace: 'on',
   },
   projects: [
