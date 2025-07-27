@@ -17,9 +17,10 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  reporter: [['html', { open: 'never' }]],
   timeout: 10000,
   use: {
+    baseURL: 'https://eventbugai.onrender.com/',
     trace: 'on',
   },
   projects: [
