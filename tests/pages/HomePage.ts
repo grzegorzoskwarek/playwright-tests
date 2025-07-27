@@ -2,13 +2,13 @@ import { Page, Locator } from '@playwright/test';
 
 export class HomePage {
     readonly page: Page;
-    readonly title: Locator;
+    readonly heading: Locator;
     readonly registerLink: Locator;
     readonly loginLink: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.title = page.locator('title');
+        this.heading = page.getByRole('heading', { name: 'Welcome to EventBugAI', level: 1 });
         this.registerLink = page.getByRole('link', { name: 'Register' });
         this.loginLink = page.getByRole('link', { name: 'Login' });
     }
