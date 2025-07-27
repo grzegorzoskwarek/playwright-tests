@@ -12,6 +12,7 @@
 8. Always confirm configuration changes by running tests after edits.
 9. Remove unused code, comments, and example content unless requested to keep them.
 10. Follow best practices for Playwright and TypeScript projects.
+11. All code and comments must be written in English only.
 
 ## Conventional Commits
 
