@@ -23,3 +23,36 @@
 
 - When instructed to commit, always run all tests first and only commit if all tests pass. Never commit without running tests.
 - When instructed to commit, do not push changes automatically. Wait for manual push instructions.
+
+## Playwright MCP Commands Translation
+
+- When a conversation is in Polish, provide Polish translations for all Playwright MCP commands (see: https://github.com/microsoft/playwright-mcp).
+- When a Polish command is used in chat, run the corresponding Playwright MCP command in the project.
+- Always confirm the command's effect and provide feedback in Polish.
+
+### Przykładowe polecenia Playwright MCP z tłumaczeniem na polski
+
+- browser.open — otwórz przeglądarkę
+- browser.close — zamknij przeglądarkę
+- browser.navigate — przejdź do adresu URL
+- browser.click — kliknij element
+- browser.type — wpisz tekst
+- browser.press_key — naciśnij klawisz
+- browser.wait_for — poczekaj na tekst lub zdarzenie
+- browser.take_screenshot — wykonaj zrzut ekranu
+- browser.hover — najedź kursorem na element
+- browser.select_option — wybierz opcję z listy
+- browser.tab_new — otwórz nową kartę
+- browser.tab_close — zamknij kartę
+- browser.tab_list — pokaż listę kart
+- browser.tab_select — wybierz kartę
+- browser.resize — zmień rozmiar okna
+- browser.drag — przeciągnij i upuść
+- browser.file_upload — wyślij plik
+- browser.handle_dialog — obsłuż okno dialogowe
+- browser.snapshot — wykonaj dostępnościowy snapshot
+- browser.network_requests — pokaż żądania sieciowe
+- browser.console_messages — pokaż wiadomości konsoli
+- browser.evaluate — wykonaj kod JavaScript
+
+Każde polecenie użyte w rozmowie po polsku uruchomi odpowiadający mu MCP command i zwróci informację zwrotną po polsku.
