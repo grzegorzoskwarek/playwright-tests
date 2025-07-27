@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { RegisterPage } from './pages/RegisterPage';
 
 test('Smoke test: app loads and shows expected title', async ({ page }) => {
   await page.goto('/');
@@ -6,13 +7,9 @@ test('Smoke test: app loads and shows expected title', async ({ page }) => {
 });
 
 test('User registration', async ({ page }) => {
-  // Unikatowy identyfikator nie zaczynający się od 'user'
+  const registerPage = new RegisterPage(page);
   const uniqueId = 'user' + Math.random().toString(36).substring(2, 10);
-  await page.goto('/');
-  await page.getByRole('link', { name: 'Register' }).click();
-  await page.getByRole('textbox', { name: 'Identifier:' }).fill(uniqueId);
-  await page.getByRole('textbox', { name: 'Username (display name):' }).fill('Test User');
-  await page.getByRole('textbox', { name: 'Password:' }).fill('TestPassword1');
-  await page.getByRole('button', { name: 'Register' }).click();
-  await expect(page.getByText('Registration successful! Redirecting to home page...')).toBeVisible();
+  await registerPage.goto();
+  await registerPage.register(uniqueId, 'Test User', 'TestPassword1');
+  await expect(registerPage.successMessage).toBeVisible();
 });
