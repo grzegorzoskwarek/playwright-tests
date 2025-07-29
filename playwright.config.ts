@@ -26,17 +26,14 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      grep: /@setup/,
       use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'public',
-      grep: /@public/,
       use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'user-flows',
-      grep: /@user/,
       use: { ...devices['Desktop Chrome'] },
     },
     {
