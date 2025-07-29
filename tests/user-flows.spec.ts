@@ -9,12 +9,6 @@ test.describe('User flows', { tag: ['@user'] }, () => {
         await expect(registerPage.successMessage).toBeVisible();
     });
 
-    test('User login: should allow a registered user to log in with valid credentials and see the login heading', { tag: ['@login'] }, async ({ loginPage }) => {
-        await loginPage.goto();
-        await loginPage.login('testuser', 'TestPassword1');
-        await expect(loginPage.loginHeading).toBeVisible();
-    });
-
     test.describe('Event flows', { tag: ['@event'] }, () => {
         test('Event creation: user can create a valid event and see a success confirmation', { tag: ['@event-creation'] }, async ({ loginPage, eventsPage }) => {
             await loginPage.goto();
@@ -22,6 +16,7 @@ test.describe('User flows', { tag: ['@user'] }, () => {
             await expect(loginPage.loginHeading).toBeVisible();
 
             await eventsPage.gotoCreateEvent();
+            await eventsPage.titleInput.waitFor({ state: 'visible', timeout: 5000 });
             await eventsPage.createEvent({
                 title: 'Playwright Test Event',
                 description: 'This is a test event created by Playwright.',

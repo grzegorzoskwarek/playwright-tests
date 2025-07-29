@@ -25,20 +25,12 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'setup',
-      use: { ...devices['Desktop Chrome'] },
-    },
-    {
-      name: 'public',
-      use: { ...devices['Desktop Chrome'] },
-    },
-    {
-      name: 'user-flows',
-      use: { ...devices['Desktop Chrome'] },
-    },
-    {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'android-chrome',
+      use: { ...devices['Pixel 5'] },
     },
   ],
 });
