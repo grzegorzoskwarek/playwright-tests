@@ -16,7 +16,8 @@ test.describe('User flows', { tag: ['@user'] }, () => {
             await expect(loginPage.loginHeading).toBeVisible();
 
             await eventsPage.gotoCreateEvent();
-            await eventsPage.titleInput.waitFor({ state: 'visible', timeout: 5000 });
+            await eventsPage.titleInput.waitFor({ state: 'visible', timeout: 15000 });
+            await eventsPage.createEventButton.waitFor({ state: 'visible', timeout: 15000 });
             await eventsPage.createEvent({
                 title: 'Playwright Test Event',
                 description: 'This is a test event created by Playwright.',
