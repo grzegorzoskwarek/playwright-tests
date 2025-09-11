@@ -15,23 +15,33 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 1,
+  retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [['html', { open: 'never' }]],
   timeout: 10000,
   use: {
     baseURL: 'https://eventbugai.onrender.com/',
     trace: 'on',
-    screenshot: 'only-on-failure',
   },
   projects: [
     {
-      name: 'chromium',
+      name: 'setup',
+      grep: /@setup/,
       use: { ...devices['Desktop Chrome'] },
     },
     {
-      name: 'android-chrome',
-      use: { ...devices['Pixel 5'] },
+      name: 'public',
+      grep: /@public/,
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'user-flows',
+      grep: /@user/,
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
     },
   ],
 });
