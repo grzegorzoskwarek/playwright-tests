@@ -13,27 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+      - name: Build Playwright test container
+        run: docker build -t vibe-playwright-tests .
 
-      - name: Cache node modules
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
-
-      - name: Run Playwright tests
-        run: npx playwright test --reporter=list
+      - name: Run Playwright tests in Docker
+        run: |
+          docker run --rm -v ${{ github.workspace }}/playwright-report:/app/playwright-report vibe-playwright-tests
 
       - name: Upload Playwright HTML report
         if: always()
