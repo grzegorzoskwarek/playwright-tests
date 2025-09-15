@@ -5,11 +5,11 @@
 
 1. Build the image:
    ```bash
-   docker build -t vibe-playwright-tests .
+   docker build -t playwright-tests .
    ```
 2. Run the tests:
    ```bash
-   docker run --rm -v $(pwd)/playwright-report:/app/playwright-report vibe-playwright-tests
+   docker run --rm -v $(pwd)/playwright-report:/app/playwright-report playwright-tests
    ```
 
 The HTML report will be available in your local `playwright-report` directory.
