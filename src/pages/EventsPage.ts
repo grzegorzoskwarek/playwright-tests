@@ -1,3 +1,14 @@
+
+export interface EventData {
+    title: string;
+    description: string;
+    date: string;
+    time: string;
+    location: string;
+    categories: string;
+    online?: boolean;
+}
+
 import { Page, Locator } from '@playwright/test';
 
 export class EventsPage {
@@ -27,6 +38,7 @@ export class EventsPage {
         this.createEventButton = page.getByRole('button', { name: 'Create Event' });
     }
 
+
     async goto() {
         await this.page.goto('/events.html');
     }
@@ -35,30 +47,14 @@ export class EventsPage {
         await this.page.goto('/create-event.html');
     }
 
-    async createEvent({
-        title,
-        description,
-        date,
-        time,
-        location,
-        categories,
-        online = false
-    }: {
-        title: string;
-        description: string;
-        date: string;
-        time: string;
-        location: string;
-        categories: string;
-        online?: boolean;
-    }) {
-        await this.titleInput.fill(title);
-        await this.descriptionInput.fill(description);
-        await this.dateInput.fill(date);
-        await this.timeInput.fill(time);
-        await this.locationInput.fill(location);
-        await this.categoriesInput.fill(categories);
-        if (online) {
+    async createEvent(data: EventData) {
+        await this.titleInput.fill(data.title);
+        await this.descriptionInput.fill(data.description);
+        await this.dateInput.fill(data.date);
+        await this.timeInput.fill(data.time);
+        await this.locationInput.fill(data.location);
+        await this.categoriesInput.fill(data.categories);
+        if (data.online) {
             await this.onlineCheckbox.check();
         }
         await this.createEventButton.click();
